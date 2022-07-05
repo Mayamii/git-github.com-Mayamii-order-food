@@ -1,0 +1,21 @@
+name: keks🍪
+on: [push]
+jobs:
+  builds-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: 😎 Checking out
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: 🔧 Install and Build
+        run: |
+          yarn
+          npm run build
+
+      - name: 🚀 Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
